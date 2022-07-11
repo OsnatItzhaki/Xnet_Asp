@@ -1,0 +1,90 @@
+﻿@model XnetTest.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fullNameEng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullNameEng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.identityCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.identityCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bank)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bankBranches)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bankBranches)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankAccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankAccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City1.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City1.description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.customerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

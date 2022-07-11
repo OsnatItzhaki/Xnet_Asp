@@ -1,0 +1,81 @@
+﻿@model IEnumerable<XnetTest.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fullNameEng)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.identityCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bankBranches)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City1.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullNameEng)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.identityCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bankBranches)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City1.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.customerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.customerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.customerId })
+        </td>
+    </tr>
+}
+
+</table>

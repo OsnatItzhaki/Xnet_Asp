@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="testsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullName" Type="varchar" MaxLength="200" />
+          <Property Name="fullNameEng" Type="varchar" MaxLength="200" />
+          <Property Name="dateBirth" Type="datetime" />
+          <Property Name="identityCard" Type="varchar" MaxLength="50" />
+          <Property Name="cityCode" Type="int" />
+          <Property Name="bank" Type="int" />
+          <Property Name="bankBranches" Type="int" />
+          <Property Name="BankAccountNumber" Type="int" />
+        </EntityType>
+        <Association Name="FK__Customers__cityC__2C3393D0">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customers__cityC__2D27B809">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddClient_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fullName" Type="varchar" Mode="In" />
+          <Parameter Name="fullNameEng" Type="varchar" Mode="In" />
+          <Parameter Name="dateBirth" Type="date" Mode="In" />
+          <Parameter Name="identityCard" Type="varchar" Mode="In" />
+          <Parameter Name="cityCode" Type="int" Mode="In" />
+          <Parameter Name="bank" Type="int" Mode="In" />
+          <Parameter Name="bankBranches" Type="int" Mode="In" />
+          <Parameter Name="BankAccountNumber" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="testsModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Customers__cityC__2C3393D0" Association="Self.FK__Customers__cityC__2C3393D0">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customers__cityC__2D27B809" Association="Self.FK__Customers__cityC__2D27B809">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__cityC__2C3393D0" FromRole="Cities" ToRole="Customers" />
+          <NavigationProperty Name="Customers1" Relationship="Self.FK__Customers__cityC__2D27B809" FromRole="Cities" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fullNameEng" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dateBirth" Type="DateTime" Precision="3" />
+          <Property Name="identityCard" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cityCode" Type="Int32" />
+          <Property Name="bank" Type="Int32" />
+          <Property Name="bankBranches" Type="Int32" />
+          <Property Name="BankAccountNumber" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Customers__cityC__2C3393D0" FromRole="Customers" ToRole="Cities" />
+          <NavigationProperty Name="City1" Relationship="Self.FK__Customers__cityC__2D27B809" FromRole="Customers" ToRole="Cities" />
+        </EntityType>
+        <Association Name="FK__Customers__cityC__2C3393D0">
+          <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customers__cityC__2D27B809">
+          <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <AssociationSet Name="FK__Customers__cityC__2C3393D0" Association="Self.FK__Customers__cityC__2C3393D0">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customers__cityC__2D27B809" Association="Self.FK__Customers__cityC__2D27B809">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <FunctionImport Name="AddClient_sp">
+            <Parameter Name="fullName" Mode="In" Type="String" />
+            <Parameter Name="fullNameEng" Mode="In" Type="String" />
+            <Parameter Name="dateBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="identityCard" Mode="In" Type="String" />
+            <Parameter Name="cityCode" Mode="In" Type="Int32" />
+            <Parameter Name="bank" Mode="In" Type="Int32" />
+            <Parameter Name="bankBranches" Mode="In" Type="Int32" />
+            <Parameter Name="BankAccountNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testsModelStoreContainer" CdmEntityContainer="testsEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="testsModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="testsModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="fullNameEng" ColumnName="fullNameEng" />
+                <ScalarProperty Name="dateBirth" ColumnName="dateBirth" />
+                <ScalarProperty Name="identityCard" ColumnName="identityCard" />
+                <ScalarProperty Name="cityCode" ColumnName="cityCode" />
+                <ScalarProperty Name="bank" ColumnName="bank" />
+                <ScalarProperty Name="bankBranches" ColumnName="bankBranches" />
+                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddClient_sp" FunctionName="testsModel.Store.AddClient_sp" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
