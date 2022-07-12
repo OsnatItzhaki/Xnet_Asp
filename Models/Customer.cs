@@ -27,13 +27,6 @@ namespace XnetTest.Models
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }
 
-        public void AddCustomer(CustomerDTO customer)
-        {
-            using (var context = new testsEntities())
-            {
-                context.AddClient_sp(customer.fullName, customer.fullNameEng, customer.dateBirth, customer.identityCard, customer.cityCode, customer.bank, customer.bankBranches, customer.BankAccountNumber);
 
-            }
-        }
     }
 }

@@ -14,52 +14,19 @@ namespace XnetTest.Controllers
     {
 
 
-        private Customer c = new Customer();
-        //public IHttpActionResult GetCustomerXmlFile(int isxml)
-        //{
-        //    try
-        //    {
-        //        c.CreateXml();
-
-        //        return Ok();
-        //    }
-        //    catch(Exception e)
-        //    {
-        //        return InternalServerError(e);
-        //    }
-        //}
+        private CustomerDTO c = new CustomerDTO();
+      
+       
         public IHttpActionResult GetCustomers()
         {
             try
             {
-                //c.getCustomerData();
-                using (var context = new testsEntities())
-                {
-
-                    var customer = (from c in context.Customers
-                                    
-                                    select new CustomerDTO
-                                    {
-                                        fullName = c.fullName,
-                                        fullNameEng = c.fullNameEng,
-                                        dateBirth = (DateTime)c.dateBirth,
-                                        identityCard = c.identityCard,
-                                        cityCode = c.City.code,
-                                        cityName=c.City.description,
-                                        bank = (int)c.bank,
-                                        bankBranches = (int)c.bankBranches,
-                                        BankAccountNumber= (int)c.BankAccountNumber,
-                                    }).ToList();
-
-
-
-
-                    //var customer = query.ToList<Customer>();
-                    return Ok(customer);
-                }
-                //List<Client> clientList = ChangingWindow.getAllClient();
-
-
+                List<CustomerDTO> customer = c.getCustomerData();
+               
+                
+                return Ok(customer);
+                
+             
             }
             catch (Exception e)
             {
@@ -68,7 +35,7 @@ namespace XnetTest.Controllers
 
         }
         [System.Web.Http.HttpPost]
-        //[FromBody] CustomerDTO customer
+        
         public IHttpActionResult Post( CustomerDTO customer)
         {
             try
@@ -76,7 +43,7 @@ namespace XnetTest.Controllers
               
                 c.AddCustomer(customer);
                 return Ok();
-                //return Ok("לקוח חדש נוצר בהצלחה");
+               
             }
             catch (Exception e)
             {

@@ -154,11 +154,11 @@
     <Compile Include="Models\City.cs">
       <DependentUpon>testModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CityDTO.cs" />
+    <Compile Include="BL\CityDTO.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>testModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomerDTO.cs" />
+    <Compile Include="BL\CustomerDTO.cs" />
     <Compile Include="Models\testModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -255,6 +255,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XmlFileApp\XmlFileApp.csproj">
+      <Project>{b6ac295f-6637-47e8-8acf-b6c1ae485f08}</Project>
+      <Name>XmlFileApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
